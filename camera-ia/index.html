@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FryMaster Vision</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>FRYMASTER VISION</h1>
+        <p>Sistema de Visão Computacional &mdash; Maillard AI &mdash; ESP32-CAM</p>
+    </div>
+
+    <div class="dashboard">
+
+        <div class="side-panel">
+            <div class="panel-title">Sistema</div>
+
+            <div class="metric">
+                <div class="metric-label">CÂMERA</div>
+                <div class="metric-value off" id="m-cam">OFFLINE</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-label">TEMP. INTERNA</div>
+                <div class="metric-value off" id="m-temp">— °C</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-label">TURBINA</div>
+                <div class="metric-value off" id="m-turb">IDLE</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-label">FIRMWARE</div>
+                <div class="metric-value" style="font-size:.9rem;">v2.4.1_stable</div>
+            </div>
+        </div>
+
+        <div class="center-col">
+            <button id="btn-power">⏻ &nbsp; LIGAR CÂMERA</button>
+
+            <div class="camera-zone" id="camera-zone">
+                <div class="oven-bg"></div>
+                <div class="scan-line"></div>
+                <div class="cam-off-label">
+                    <span class="icon">📷</span>
+                    <span>CÂMERA DESLIGADA</span>
+                </div>
+            </div>
+
+            <div class="status-box" id="status-box">
+                &gt; Status: Forno desligado. Aguardando inicialização.
+            </div>
+
+            <div class="maillard-wrap">
+                <div class="maillard-title">Progresso de Maillard (Cor &amp; Crocância)</div>
+                <div class="bar-track">
+                    <div class="bar-fill" id="bar-fill"></div>
+                </div>
+                <div class="bar-labels">
+                    <span>CRU</span>
+                    <span>AQUECENDO</span>
+                    <span>SELADO</span>
+                    <span>DOURADO</span>
+                    <span>PERFEITO</span>
+                </div>
+                <div class="pct-display"><span id="pct-val">0</span>%</div>
+            </div>
+
+            <div class="process-controls" id="process-controls" style="display: none;">
+                <button class="btn-pause" id="btn-pause" onclick="togglePause()">PAUSAR</button>
+                <button class="btn-cancel" onclick="cancelProcessManually()">CANCELAR</button>
+            </div>
+
+            <div class="food-tray">
+                <div class="food-item" draggable="true" data-name="Frango" data-time="10">
+                    🍗<span class="tag">Frango</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="side-panel">
+            <div class="panel-title">Análise IA</div>
+
+            <div class="metric">
+                <div class="metric-label">ALIMENTO</div>
+                <div class="metric-value off" id="m-food">—</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-label">CONFIANÇA</div>
+                <div class="metric-value off" id="m-conf">—</div>
+                <div class="mini-bar-wrap">
+                    <div class="mini-bar" id="conf-bar"></div>
+                </div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-label">COR SUPERFICIAL</div>
+                <div class="metric-value off" id="m-cor">—</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-label">TEMPO RESTANTE</div>
+                <div class="metric-value off" id="m-time">—</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
